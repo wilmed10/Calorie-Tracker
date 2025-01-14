@@ -25,7 +25,11 @@ export default function Form({dispatch, state}: FormProps) {
     useEffect(() => {
         if (state.activeId) {
             const selectedActivity = state.activities.find( stateActivity => stateActivity.id === state.activeId )
-            setActivity(selectedActivity)
+            if (selectedActivity) {
+                setActivity(selectedActivity);
+            } else {
+                setActivity(initialState); // or handle the case when no activity is found
+            }
         }
     }, [state.activeId])
 
